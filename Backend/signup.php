@@ -8,6 +8,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = isset($_POST["email"]) ? $_POST["email"] : "";
     $password = isset($_POST["password"]) ? $_POST["password"] : "";
 
+    if (empty($name) || empty($email) || empty($password)) {
+        $response["status"] = "error";
+        $response["message"] = "Please fill out all fields.";
+        echo json_encode($response);
+        exit;
+    }
+
     
     $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
