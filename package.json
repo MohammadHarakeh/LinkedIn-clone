@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "axios": "^1.6.8",
+    "usestate": "^1.1.3"
+  }
+}
