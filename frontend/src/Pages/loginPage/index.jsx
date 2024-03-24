@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import SignUp from "./componenets/signup/signup";
 import "./styles.css";
 import SignIn from "./componenets/signin/signin";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const [credentials, setCredentials] = useState({
@@ -15,6 +16,8 @@ const LoginPage = () => {
   const [isLogin, setIsLogin] = useState(true);
 
   const regex = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
+
+  const navigateTo = useNavigate();
 
   const handleCheckboxChange = (e) => {
     const { value, checked } = e.target;
@@ -67,7 +70,7 @@ const LoginPage = () => {
       const responseData = await response.json();
       console.log("Server response:", responseData);
       if (responseData.status === "success") {
-        console.log("User Created");
+        setIsLogin(true);
         setError("");
       } else {
         if (responseData.message === "email already exists.") {
@@ -104,7 +107,7 @@ const LoginPage = () => {
       const responseData = await response.json();
       console.log("Server response:", responseData);
       if (responseData.status === "success") {
-        console.log("Login successful");
+        navigateTo("/home");
         setError("");
       } else {
         setError("Invalid email or password.");

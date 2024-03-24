@@ -1,22 +1,30 @@
-import { React } from "react";
+import React from "react";
 import "./Home.css";
 
-const Home = ({ handleImageChange, image }) => {
+const Home = ({ handleImageChange, image, setImage }) => {
   return (
-    <div>
-      <div className="search-post-wrapper">
-        <input type="text" placeholder="Start a post"></input>
-        <input type="file" onChange={handleImageChange}></input>
-        <div>
-          {image && (
-            <img
-              src={URL.createObjectURL(image)}
-              alt="Uploaded"
-              className="uploaded-image"
-            ></img>
-          )}
+    <div className="search-post-wrapper">
+      <div className="input-container">
+        <input type="text" className="text-input" placeholder="Start a post" />
+        <div className="choose-image-container">
+          <label htmlFor="fileInput" className="choose-image-btn">
+            Choose Image
+          </label>
+          <input
+            type="file"
+            id="fileInput"
+            className="image-post"
+            onChange={handleImageChange}
+          />
         </div>
       </div>
+      {image && (
+        <img
+          src={URL.createObjectURL(image)}
+          alt="Uploaded"
+          className="uploaded-image"
+        />
+      )}
     </div>
   );
 };
