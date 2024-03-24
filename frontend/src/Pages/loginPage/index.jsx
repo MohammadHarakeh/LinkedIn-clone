@@ -1,0 +1,93 @@
+import React, { useState } from "react";
+import SignUp from "./componenets/signup/signup";
+import "./styles.css";
+
+const LoginPage = () => {
+  const [credentials, setCredentials] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const [error, setError] = useState("");
+  //   const [showSignIn, setShowSignIn] = useState(false);
+
+  const regex = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
+
+  //   const toggleSignIn = () => {
+  //     setShowSignIn(!showSignIn);
+  //   };
+
+  // ------------ signup errors display --------------
+  const handleSignUp = async () => {
+    if (
+      credentials.password !== credentials.confirmPassword ||
+      credentials.password.length < 6
+    ) {
+      setError("Passwords do not match or are too short.");
+      return;
+    } else if (!regex.test(credentials.email)) {
+      setError("Invalid email address.");
+      return;
+    } else if (
+      !credentials.name ||
+      !credentials.email ||
+      !credentials.password ||
+      !credentials.confirmPassword
+    ) {
+      setError("Inputs can't be empty.");
+      return;
+    }
+
+    // ------------------- linking PHP --------------------
+    const formData = new FormData();
+    formData.append("name", credentials.name);
+    formData.append("email", credentials.email);
+    formData.append("password", credentials.password);
+    formData.append("confirmPassword", credentials.confirmPassword);
+
+    try {
+      const response = await fetch(
+        "http://127.0.0.1/Linkedin-clone/Backend/signup.php",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      const responseData = await response.json();
+      console.log("Server response:", responseData);
+      if (responseData.status == "success") {
+        console.log("User Created");
+        setError("");
+      } else {
+        if (responseData.message === "email already exists.") {
+          setError("Email already exists. Please use a different email.");
+        } else {
+          setError("Failed to sign up. Please try again.");
+        }
+      }
+    } catch (error) {
+      console.error("Error occurred:", error);
+      setError("Failed to sign up. Please try again.");
+    }
+  };
+
+  return (
+    <body>
+      <div className="wrapper">
+        <div>
+          <h1>LinkedIn</h1>
+        </div>
+        <SignUp
+          handleSignUp={handleSignUp}
+          credentials={credentials}
+          setCredentials={setCredentials}
+          error={error}
+        ></SignUp>
+      </div>
+    </body>
+  );
+};
+
+export default LoginPage;
