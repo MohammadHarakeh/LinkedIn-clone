@@ -7,6 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = isset($_POST["name"]) ? $_POST["name"] : "";
     $email = isset($_POST["email"]) ? $_POST["email"] : "";
     $password = isset($_POST["password"]) ? $_POST["password"] : "";
+    $type = isset($_POST["type"]) ? ($_POST["type"] === "Company" ? 1 : 0) : 0;
 
     if (empty($name) || empty($email) || empty($password)) {
         $response["status"] = "error";
@@ -28,8 +29,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $response["status"] = "error";
         $response["message"] = "email already exists.";
     } else {
-        $query = $mysqli->prepare('INSERT INTO users (name, email, password) VALUES (?,?,?)');
-        $query->bind_param('sss', $name, $email, $hashed_password);
+        $query = $mysqli->prepare('INSERT INTO users (name, email, password, type) VALUES (?,?,?,?)');
+        $query->bind_param('sssi', $name, $email, $hashed_password, $type);
         $query->execute();
 
         $response['status'] = "success";

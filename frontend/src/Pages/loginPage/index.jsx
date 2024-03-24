@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import SignUp from "./componenets/signup/signup";
 import "./styles.css";
 import SignIn from "./componenets/signin/signin";
@@ -9,11 +9,21 @@ const LoginPage = () => {
     email: "",
     password: "",
     confirmPassword: "",
+    type: "",
   });
   const [error, setError] = useState("");
   const [isLogin, setIsLogin] = useState(true);
 
   const regex = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
+
+  const handleCheckboxChange = (e) => {
+    const { value, checked } = e.target;
+    const updatedType = checked ? value : "";
+    setCredentials((prevCredentials) => ({
+      ...prevCredentials,
+      type: updatedType,
+    }));
+  };
 
   // ------------ signup errors display --------------
   const handleSignUp = async () => {
@@ -30,7 +40,8 @@ const LoginPage = () => {
       !credentials.name ||
       !credentials.email ||
       !credentials.password ||
-      !credentials.confirmPassword
+      !credentials.confirmPassword ||
+      !credentials.type
     ) {
       setError("Inputs can't be empty.");
       return;
@@ -42,6 +53,7 @@ const LoginPage = () => {
     formData.append("email", credentials.email);
     formData.append("password", credentials.password);
     formData.append("confirmPassword", credentials.confirmPassword);
+    formData.append("type", credentials.type);
 
     try {
       const response = await fetch(
@@ -54,7 +66,7 @@ const LoginPage = () => {
 
       const responseData = await response.json();
       console.log("Server response:", responseData);
-      if (responseData.status == "success") {
+      if (responseData.status === "success") {
         console.log("User Created");
         setError("");
       } else {
@@ -73,6 +85,7 @@ const LoginPage = () => {
   const handleSignIn = async () => {
     if (!credentials.email || !credentials.password) {
       setError("Email and Password are required.");
+      return;
     }
 
     const formData = new FormData();
@@ -124,6 +137,7 @@ const LoginPage = () => {
             setCredentials={setCredentials}
             error={error}
             setIsLogin={setIsLogin}
+            handleCheckboxChange={handleCheckboxChange}
           ></SignUp>
         )}
       </div>

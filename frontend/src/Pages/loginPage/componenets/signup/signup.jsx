@@ -7,6 +7,7 @@ export default function SignUp({
   error,
   setCredentials,
   setIsLogin,
+  handleCheckboxChange,
 }) {
   return (
     <div className="signup-modal">
@@ -20,7 +21,6 @@ export default function SignUp({
             setCredentials({ ...credentials, email: e.target.value })
           }
         ></input>
-
         <input
           type="text"
           name="name"
@@ -30,7 +30,6 @@ export default function SignUp({
             setCredentials({ ...credentials, name: e.target.value });
           }}
         ></input>
-
         <input
           type="password"
           name="password"
@@ -43,7 +42,6 @@ export default function SignUp({
             });
           }}
         ></input>
-
         <input
           type="password"
           name="confirmPasss"
@@ -56,6 +54,30 @@ export default function SignUp({
             });
           }}
         ></input>
+        <div>
+          <label>
+            <input
+              type="checkbox"
+              name="type"
+              value="Company"
+              checked={credentials.type === "Company"}
+              onChange={handleCheckboxChange}
+            />
+            Company
+          </label>
+        </div>
+        <div>
+          <label>
+            <input
+              type="checkbox"
+              name="type"
+              value="User"
+              checked={credentials.type === "User"}
+              onChange={handleCheckboxChange}
+            />
+            User
+          </label>
+        </div>
       </div>
       {error !== "" && <p className="error-message">{error}</p>}
 
