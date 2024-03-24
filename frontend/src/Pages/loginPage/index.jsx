@@ -106,7 +106,6 @@ const LoginPage = () => {
       if (responseData.status === "success") {
         console.log("Login successful");
         setError("");
-        // Redirect or set logged in state
       } else {
         setError("Invalid email or password.");
       }

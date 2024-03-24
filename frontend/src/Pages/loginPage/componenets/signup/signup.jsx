@@ -54,29 +54,25 @@ export default function SignUp({
             });
           }}
         ></input>
-        <div>
-          <label>
-            <input
-              type="checkbox"
-              name="type"
-              value="Company"
-              checked={credentials.type === "Company"}
-              onChange={handleCheckboxChange}
-            />
-            Company
-          </label>
-        </div>
-        <div>
-          <label>
-            <input
-              type="checkbox"
-              name="type"
-              value="User"
-              checked={credentials.type === "User"}
-              onChange={handleCheckboxChange}
-            />
-            User
-          </label>
+
+        <div className="checkbox-wrapper">
+          <label> Company</label>
+          <input
+            type="checkbox"
+            name="type"
+            value="Company"
+            checked={credentials.type === "Company"}
+            onChange={handleCheckboxChange}
+          />
+
+          <label> User</label>
+          <input
+            type="checkbox"
+            name="type"
+            value="User"
+            checked={credentials.type === "User"}
+            onChange={handleCheckboxChange}
+          />
         </div>
       </div>
       {error !== "" && <p className="error-message">{error}</p>}

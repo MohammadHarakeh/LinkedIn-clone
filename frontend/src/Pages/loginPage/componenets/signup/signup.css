@@ -9,7 +9,6 @@ body {
     rgba(156, 252, 248, 1) 11.2%,
     rgba(110, 123, 251, 1) 91.1%
   );
-  margin-top: 10%;
 }
 
 .inputs {
@@ -19,16 +18,16 @@ body {
   gap: 15px;
 }
 
+.inputs input {
+  padding: 1%;
+  width: 20vw;
+}
+
 .error-message {
   text-align: center;
   color: red;
   width: 80%;
   margin: 1% auto;
-}
-
-.inputs input {
-  padding: 2%;
-  width: 20vw;
 }
 
 .sign-in-btn {
@@ -62,4 +61,19 @@ body {
 
 .swicher {
   text-align: center;
+}
+
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  width: 30%;
+  margin-left: 5%;
+  margin-bottom: 2%;
+  margin-top: 2%;
+}
+
+.checkbox-wrapper input {
+  margin-right: 20%;
 }
