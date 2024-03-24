@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SignUp from "./componenets/signup/signup";
 import "./styles.css";
+import SignIn from "./componenets/signin/signin";
 
 const LoginPage = () => {
   const [credentials, setCredentials] = useState({
@@ -73,18 +74,57 @@ const LoginPage = () => {
     }
   };
 
+  const handleSignIn = async () => {
+    if (!credentials.email || !credentials.password) {
+      setError("Email and Password are required.");
+    }
+
+    const formData = new FormData();
+    formData.append("email", credentials.email);
+    formData.append("password", credentials.password);
+
+    try {
+      const response = await fetch(
+        "http://127.0.0.1/Linkedin-clone/Backend/signin.php",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      const responseData = await response.json();
+      console.log("Server response:", responseData);
+      if (responseData.status === "success") {
+        console.log("Login successful");
+        setError("");
+        // Redirect or set logged in state
+      } else {
+        setError("Invalid email or password.");
+      }
+    } catch (error) {
+      console.error("Error occurred:", error);
+      setError("Failed to sign in. Please try again.");
+    }
+  };
+
   return (
     <body>
       <div className="wrapper">
         <div>
           <h1>LinkedIn</h1>
         </div>
-        <SignUp
+        {/* <SignUp
           handleSignUp={handleSignUp}
           credentials={credentials}
           setCredentials={setCredentials}
           error={error}
-        ></SignUp>
+        ></SignUp> */}
+        <SignIn
+          credentials={credentials}
+          setCredentials={setCredentials}
+          error={error}
+          handleSignIn={handleSignIn}
+        ></SignIn>
       </div>
     </body>
   );

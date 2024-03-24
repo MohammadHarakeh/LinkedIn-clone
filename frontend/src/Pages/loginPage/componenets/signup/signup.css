@@ -22,8 +22,8 @@ body {
 .error-message {
   text-align: center;
   color: red;
-  width: 50%;
-  margin: 3% auto;
+  width: 80%;
+  margin: 1% auto;
 }
 
 .inputs input {
