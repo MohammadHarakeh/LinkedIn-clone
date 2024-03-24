@@ -6,6 +6,7 @@ export default function SignUp({
   credentials,
   error,
   setCredentials,
+  setIsLogin,
 }) {
   return (
     <div className="signup-modal">
@@ -64,7 +65,15 @@ export default function SignUp({
 
       <div className="swicher">
         <p>
-          Already have an account? <span className="sign-in-btn">Sign in</span>
+          Already have an account?{" "}
+          <span
+            className="sign-in-btn"
+            onClick={() => {
+              setIsLogin(true);
+            }}
+          >
+            Sign in
+          </span>
         </p>
       </div>
     </div>

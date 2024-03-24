@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SignUp from "./componenets/signup/signup";
 import "./styles.css";
 import SignIn from "./componenets/signin/signin";
@@ -11,13 +11,9 @@ const LoginPage = () => {
     confirmPassword: "",
   });
   const [error, setError] = useState("");
-  //   const [showSignIn, setShowSignIn] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
 
   const regex = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
-
-  //   const toggleSignIn = () => {
-  //     setShowSignIn(!showSignIn);
-  //   };
 
   // ------------ signup errors display --------------
   const handleSignUp = async () => {
@@ -113,18 +109,23 @@ const LoginPage = () => {
         <div>
           <h1>LinkedIn</h1>
         </div>
-        {/* <SignUp
-          handleSignUp={handleSignUp}
-          credentials={credentials}
-          setCredentials={setCredentials}
-          error={error}
-        ></SignUp> */}
-        <SignIn
-          credentials={credentials}
-          setCredentials={setCredentials}
-          error={error}
-          handleSignIn={handleSignIn}
-        ></SignIn>
+        {isLogin ? (
+          <SignIn
+            credentials={credentials}
+            setCredentials={setCredentials}
+            error={error}
+            handleSignIn={handleSignIn}
+            setIsLogin={setIsLogin}
+          ></SignIn>
+        ) : (
+          <SignUp
+            handleSignUp={handleSignUp}
+            credentials={credentials}
+            setCredentials={setCredentials}
+            error={error}
+            setIsLogin={setIsLogin}
+          ></SignUp>
+        )}
       </div>
     </body>
   );

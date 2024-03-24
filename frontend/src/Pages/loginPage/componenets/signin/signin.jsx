@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import "./signin.css";
 
-const SignIn = ({ credentials, setCredentials, error, handleSignIn }) => {
+const SignIn = ({
+  credentials,
+  setCredentials,
+  error,
+  handleSignIn,
+  setIsLogin,
+}) => {
   return (
     <div>
       <div className="inputs">
@@ -33,7 +39,15 @@ const SignIn = ({ credentials, setCredentials, error, handleSignIn }) => {
 
         <div className="swicher">
           <p>
-            Don't have an account? <span className="sign-in-btn">Sign up</span>
+            Don't have an account?{" "}
+            <span
+              className="sign-in-btn"
+              onClick={() => {
+                setIsLogin(false);
+              }}
+            >
+              Sign up
+            </span>
           </p>
         </div>
       </div>
