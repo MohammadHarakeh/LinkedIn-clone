@@ -31,7 +31,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $response["status"] = "success";
         $response["message"] = "Login successful.";
         $response['id'] = $id;
-        $response['email'] = $email;
     } else {
         $response["status"] = "error";
         $response["message"] = "Incorrect password.";

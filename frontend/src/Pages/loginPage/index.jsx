@@ -4,7 +4,7 @@ import "./styles.css";
 import SignIn from "./componenets/signin/signin";
 import { useNavigate } from "react-router-dom";
 
-const LoginPage = () => {
+const LoginPage = ({ userId, setUserId }) => {
   const [credentials, setCredentials] = useState({
     name: "",
     email: "",
@@ -107,6 +107,7 @@ const LoginPage = () => {
       const responseData = await response.json();
       console.log("Server response:", responseData);
       if (responseData.status === "success") {
+        setUserId(responseData.id);
         navigateTo("/home");
         setError("");
       } else {
