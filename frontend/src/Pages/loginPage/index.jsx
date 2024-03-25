@@ -72,6 +72,11 @@ const LoginPage = ({ setUserId }) => {
       if (responseData.status === "success") {
         setIsLogin(true);
         setError("");
+        credentials.email = "";
+        credentials.name = "";
+        credentials.password = "";
+        credentials.confirmPassword = "";
+        credentials.type = "";
       } else {
         if (responseData.message === "email already exists.") {
           setError("Email already exists. Please use a different email.");

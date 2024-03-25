@@ -1,14 +1,9 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .header-wrapper {
   width: 100%;
   background-color: #007bff;
   color: #fff;
   padding-top: 1%;
+  border-bottom: 2px solid #0056b3;
 }
 
 .header {
@@ -17,10 +12,6 @@
   align-items: center;
   width: 80%;
   margin: auto;
-}
-
-.header-border {
-  border-bottom: 2px solid #0056b3;
 }
 
 .logo-left {
@@ -66,8 +57,10 @@
   flex-direction: column;
   align-items: center;
   margin-top: 2%;
-  border: 1px solid black;
-  width: 40%;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  border-radius: 10px;
+  width: 80%;
   margin-left: auto;
   margin-right: auto;
   padding: 20px;
@@ -79,6 +72,19 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-container {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
 }
 
 .text-input {
@@ -131,4 +137,92 @@
 .upload-button:hover {
   background-color: #0056b3;
   transition: background-color 0.3s ease;
+}
+
+.homepage-wrapper {
+  height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 85%;
+  margin: auto;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.user-profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  width: 20%;
+  margin-top: 2%;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  border-radius: 10px;
+  padding: 2%;
+}
+
+.user-profile h2 {
+  font-size: 5rem;
+  display: flex;
+}
+
+.follower-card {
+  display: flex;
+  width: 20%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 2%;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  padding: 1%;
+  border-radius: 10px;
+}
+
+.follower-card p {
+  font-size: 1.3rem;
+}
+
+.follower-card button {
+  width: 50%;
+  border-radius: 20px;
+  padding: 3%;
+}
+
+.follower-card button:hover {
+  background-color: #0056b3;
+  cursor: pointer;
+  color: white;
+}
+
+.posted-images-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.posted-images-container img {
+  border-radius: 15px;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+}
+
+.image-container img {
+  border-radius: 15px;
+}
+
+.middle-wrapper {
+  width: 100%;
+  margin: 1%;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
