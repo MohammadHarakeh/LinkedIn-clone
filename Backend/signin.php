@@ -14,11 +14,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $response = array();
  
-    $check_user = $mysqli->prepare('SELECT id, email, password FROM users WHERE email=?');
+    $check_user = $mysqli->prepare('SELECT userId, email, password FROM users WHERE email=?');
     $check_user->bind_param('s', $email);
     $check_user->execute();
     $check_user->store_result();
-    $check_user->bind_result($id, $email, $hashed_password);
+    $check_user->bind_result($userId, $email, $hashed_password);
     $check_user->fetch();
     $num_rows = $check_user->num_rows();
 
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if(password_verify($password, $hashed_password)) {
         $response["status"] = "success";
         $response["message"] = "Login successful.";
-        $response['id'] = $id;
+        $response['userId'] = $userId;
     } else {
         $response["status"] = "error";
         $response["message"] = "Incorrect password.";

@@ -1,6 +1,6 @@
 import { React, useState } from "react";
-import Header from "./componenets/Header/Header";
 import Home from "./componenets/Home/Home";
+import Profile from "./componenets/Profile/profile";
 
 const HomePage = ({ userId }) => {
   const [text, setText] = useState("");
@@ -68,7 +68,6 @@ const HomePage = ({ userId }) => {
 
   return (
     <div>
-      <Header></Header>
       <Home
         handleImageChange={handleImageChange}
         image={image}
@@ -79,6 +78,7 @@ const HomePage = ({ userId }) => {
         incorrect={incorrect}
         setIncorrect={setIncorrect}
       ></Home>
+      <Profile></Profile>
     </div>
   );
 };

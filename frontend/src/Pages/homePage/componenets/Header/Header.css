@@ -1,0 +1,50 @@
+.header-wrapper {
+  width: 100%;
+  background-color: #fff;
+  color: #fff;
+  padding-top: 1%;
+  border-bottom: 2px solid #ccc;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin: auto;
+}
+
+.logo-left {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1%;
+}
+
+.logo-left h2 {
+  color: rgb(39, 39, 39);
+  cursor: pointer;
+}
+
+.logo-left h2:hover {
+  color: rgb(87, 87, 87);
+}
+
+.logo-right {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 1%;
+}
+
+.logo-right h2 {
+  color: rgb(39, 39, 39);
+  cursor: pointer;
+}
+
+.logo-right h2:hover {
+  color: rgb(87, 87, 87);
+}
+
+.logo {
+  margin: 0;
+}

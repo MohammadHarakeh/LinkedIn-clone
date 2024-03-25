@@ -1,30 +1,19 @@
 <?php
-include ('connection.php');
+include("connection.php");
 
-$response = array();
+$postText = $_POST['postText'];
+$postImage = $_POST['postImage'];
+$userId = $_POST['userId'];
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["image"]) && isset($_POST['id'])) {
-    $image = file_get_contents($_FILES['image']['tmp_name']);
-    $image = base64_encode($image);
-    $id = $_POST['id'];
-    $text = $_POST['text'];
+$query = $mysqli -> prepare('INSERT INTO posts (postText, postImage, userId) VALUES (?, ?, ?)');
+$query -> bind_param("ssi", $postText, $postImage, $userId);
+if($query -> execute()){
+  $response['status'] = "success";
+  $response['message'] = "post saved successfully";;
 
-
-    $stmt = $mysqli->prepare("INSERT INTO posts (id, image, text) VALUES (?, ?, ?)");
-    $stmt->bind_param("ibs", $id, $image, $text);
-
-    if ($stmt->execute()) {
-        $response["status"] = "success";
-        $response["message"] = "Image uploaded successfully.";
-    } else {
-        $response["status"] = "error";
-        $response["message"] = "Error uploading image and text: " . $mysqli->error;
-    }
-
-    $stmt->close();
-} else {
-    $response["status"] = "error";
-    $response["message"] = "Please select an image, provide an ID, and insert text.";
+}else{
+  $response['status'] = "failed";
+  $response['message'] = "post not saved";
 }
 
 echo json_encode($response);

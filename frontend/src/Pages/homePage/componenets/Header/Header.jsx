@@ -1,8 +1,11 @@
 import { React } from "react";
 import { FaLinkedin, FaHome, FaBell } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
+import "./Header.css";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
+  const navigateTo = useNavigate();
   return (
     <div>
       <div className="header-wrapper">
@@ -21,7 +24,11 @@ function Header() {
               <h2>
                 <FaBell />
               </h2>
-              <h2>
+              <h2
+                onClick={() => {
+                  navigateTo("/profile");
+                }}
+              >
                 <CgProfile />
               </h2>
             </div>

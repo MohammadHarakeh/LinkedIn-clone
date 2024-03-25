@@ -1,5 +1,7 @@
 import LoginPage from "./Pages/loginPage";
 import HomePage from "./Pages/homePage";
+import Header from "./Pages/homePage/componenets/Header/Header";
+import Profile from "./Pages/homePage/componenets/Profile/profile";
 import { React, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -12,9 +14,24 @@ function App() {
           path="/"
           element={<LoginPage userId={userId} setUserId={setUserId} />}
         />
+
         <Route
           path="/home"
-          element={<HomePage userId={userId} setUserId={setUserId} />}
+          element={
+            <>
+              <Header></Header>
+              <HomePage userId={userId} setUserId={setUserId} />
+            </>
+          }
+        />
+
+        <Route
+          path="/profile"
+          element={
+            <>
+              <Header></Header> <Profile></Profile>
+            </>
+          }
         />
       </Routes>
     </BrowserRouter>

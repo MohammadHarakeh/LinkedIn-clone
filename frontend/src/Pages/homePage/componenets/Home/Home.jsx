@@ -53,6 +53,7 @@ const Home = ({
           <p className="error-message">{incorrect}</p>
         </div>
         <div className="posted-images-container">
+          <p>User Name</p>
           <img src={rafikImage} alt="Failed Load" />
         </div>
       </div>

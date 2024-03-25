@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    if (!isset($_GET['id'])) {
+    if (!isset($_GET['userId'])) {
         $response = [
             'status' => 'error',
             'message' => 'User ID is missing'
@@ -49,9 +49,9 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
         exit;
     }
 
-    $user_id = $_GET['id'];
+    $user_id = $_GET['userId'];
 
-    $query = $mysqli->prepare('SELECT * FROM users WHERE id = ?');
+    $query = $mysqli->prepare('SELECT * FROM users WHERE userId = ?');
     $query->bind_param("i", $user_id);
     $query->execute();
     $result = $query->get_result();
