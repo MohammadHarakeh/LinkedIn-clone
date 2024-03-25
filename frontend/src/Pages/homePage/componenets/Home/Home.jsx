@@ -5,6 +5,7 @@ import "./Home.css";
 
 const Home = ({
   userInfo,
+  allUsers,
   handleImageChange,
   image,
   setImage,
@@ -60,14 +61,14 @@ const Home = ({
       </div>
 
       <div className="follower-card">
-        <p>User Name</p>
-        <button>+ Follow</button>
-
-        <p>User Name</p>
-        <button>+ Follow</button>
-
-        <p>User Name</p>
-        <button>+ Follow</button>
+        <div className="follower-list">
+          {allUsers.map((user) => (
+            <div key={user.id} className="followers">
+              <p>{user.name}</p>
+              <button>+ Follow</button>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

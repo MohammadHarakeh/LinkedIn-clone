@@ -7,6 +7,7 @@ const HomePage = ({ userId }) => {
   const [image, setImage] = useState(null);
   const [incorrect, setIncorrect] = useState("");
   const [userInfo, setUserInfo] = useState(null);
+  const [allUsers, setAllUsers] = useState([]);
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -27,6 +28,26 @@ const HomePage = ({ userId }) => {
 
     fetchUserInfo();
   }, [userId]);
+
+  useEffect(() => {
+    const fetchAllUsers = async () => {
+      try {
+        const response = await fetch(
+          "http://127.0.0.1/Linkedin-clone/Backend/getAllUsers.php"
+        );
+        const userData = await response.json();
+        if (userData.status === "success") {
+          setAllUsers(userData.user_info);
+        } else {
+          console.error("Error fetching all users:", userData.message);
+        }
+      } catch (error) {
+        console.error("Error fetching all users:", error);
+      }
+    };
+
+    fetchAllUsers();
+  }, []);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -100,6 +121,7 @@ const HomePage = ({ userId }) => {
         setIncorrect={setIncorrect}
         userId={userId}
         userInfo={userInfo}
+        allUsers={allUsers}
       ></Home>
       <Profile></Profile>
     </div>
