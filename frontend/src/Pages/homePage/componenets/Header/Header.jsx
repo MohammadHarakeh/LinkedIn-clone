@@ -5,11 +5,11 @@ import { CgProfile } from "react-icons/cg";
 function Header() {
   return (
     <div>
-      <div className="home-wrapper">
+      <div className="header-wrapper">
         <div className="header-border">
           <div className="header">
             <div className="logo-left">
-              <h2>
+              <h2 className="logo">
                 <FaLinkedin />
               </h2>
             </div>

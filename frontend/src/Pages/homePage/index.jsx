@@ -5,7 +5,6 @@ import Home from "./componenets/Home/Home";
 const HomePage = ({ userId, setUserId }) => {
   const [text, setText] = useState("");
   const [image, setImage] = useState(null);
-  const [blob, setBlob] = useState(null);
   const [incorrect, setIncorrect] = useState("");
 
   const handleImageChange = (e) => {
@@ -27,12 +26,9 @@ const HomePage = ({ userId, setUserId }) => {
       reader.onloadend = () => {
         const result = reader.result;
         setImage(result);
-        const blob = new Blob([result], { type: file.type });
-        setBlob(blob);
       };
 
       reader.readAsDataURL(file);
-      console.log(blob);
       console.log(image);
     }
   };
@@ -44,9 +40,9 @@ const HomePage = ({ userId, setUserId }) => {
     }
 
     const formData = new FormData();
-    formData.append("image", blob);
-    formData.append("id", userId);
-    formData.append("text", text);
+    formData.append("postImage", image);
+    formData.append("userId", userId);
+    formData.append("postText", text);
 
     try {
       const response = await fetch(
@@ -56,9 +52,6 @@ const HomePage = ({ userId, setUserId }) => {
           body: formData,
         }
       );
-      console.log("text: ", text);
-      console.log("User ID: ", userId);
-      console.log("image: ", blob);
 
       const responseData = await response.json();
       console.log("Server response:", responseData);

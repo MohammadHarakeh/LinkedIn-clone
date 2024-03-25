@@ -4,27 +4,40 @@
   box-sizing: border-box;
 }
 
+.header-wrapper {
+  width: 100%;
+  background-color: #007bff;
+  color: #fff;
+  padding-top: 1%;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 80%;
-  margin: 0.5% auto;
+  margin: auto;
 }
 
 .header-border {
-  border: 1px solid black;
+  border-bottom: 2px solid #0056b3;
 }
 
 .logo-left {
   display: flex;
   align-items: center;
+  margin-bottom: 1%;
 }
 
 .logo-right {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 30px;
+  margin-bottom: 1%;
+}
+
+.logo {
+  margin: 0;
 }
 
 .home-wrapper {
@@ -104,9 +117,18 @@
 }
 
 .upload-button {
-  background-color: red;
+  background-color: #007bff;
   padding: 2%;
   border-radius: 10px;
   margin-top: 2%;
   margin-bottom: 1%;
+  border: none;
+  color: white;
+  width: 15%;
+  cursor: pointer;
+}
+
+.upload-button:hover {
+  background-color: #0056b3;
+  transition: background-color 0.3s ease;
 }
