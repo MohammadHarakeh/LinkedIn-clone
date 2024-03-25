@@ -19,8 +19,7 @@ function App() {
           path="/home"
           element={
             <>
-              <Header></Header>
-              <HomePage userId={userId} setUserId={setUserId} />
+              <HomePage userId={userId} />
             </>
           }
         />
@@ -29,7 +28,8 @@ function App() {
           path="/profile"
           element={
             <>
-              <Header></Header> <Profile></Profile>
+              <Header />
+              <Profile userId={userId} />
             </>
           }
         />

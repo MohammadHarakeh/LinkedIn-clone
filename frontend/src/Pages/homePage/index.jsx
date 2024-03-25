@@ -1,34 +1,13 @@
 import { React, useState, useEffect } from "react";
 import Home from "./componenets/Home/Home";
-import Profile from "./componenets/Profile/profile";
+import Header from "./componenets/Header/Header";
 
 const HomePage = ({ userId }) => {
   const [text, setText] = useState("");
   const [image, setImage] = useState(null);
   const [incorrect, setIncorrect] = useState("");
-  const [userInfo, setUserInfo] = useState(null);
   const [allUsers, setAllUsers] = useState([]);
   const [inProfile, setInProfile] = useState(false);
-
-  useEffect(() => {
-    const fetchUserInfo = async () => {
-      try {
-        const response = await fetch(
-          `http://127.0.0.1/Linkedin-clone/Backend/getUsers.php?userId=${userId}`
-        );
-        const userData = await response.json();
-        if (userData.status === "success") {
-          setUserInfo(userData.user_info[0]);
-        } else {
-          console.error("Error fetching user info:", userData.message);
-        }
-      } catch (error) {
-        console.error("Error fetching user info:", error);
-      }
-    };
-
-    fetchUserInfo();
-  }, [userId]);
 
   useEffect(() => {
     const fetchAllUsers = async () => {
@@ -111,6 +90,7 @@ const HomePage = ({ userId }) => {
 
   return (
     <div>
+      <Header></Header>
       <Home
         handleImageChange={handleImageChange}
         image={image}
@@ -121,12 +101,8 @@ const HomePage = ({ userId }) => {
         incorrect={incorrect}
         setIncorrect={setIncorrect}
         userId={userId}
-        userInfo={userInfo}
         allUsers={allUsers}
       ></Home>
-      {inProfile && (
-        <Profile userId={userId} userInfo={userInfo} allUsers={allUsers} />
-      )}
     </div>
   );
 };

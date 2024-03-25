@@ -1,5 +1,4 @@
 import React from "react";
-import { CgProfile } from "react-icons/cg";
 import rafikImage from "../../../../assets/rafik.png";
 import "./Home.css";
 
@@ -16,12 +15,6 @@ const Home = ({
 }) => {
   return (
     <div className="homepage-wrapper">
-      <div className="user-profile">
-        <h2>
-          <CgProfile />
-        </h2>
-        <p>{`${userInfo && userInfo.name}`}</p>
-      </div>
       <div className="middle-wrapper">
         <div className="search-post-wrapper">
           <div className="input-container">

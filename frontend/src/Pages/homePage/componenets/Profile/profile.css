@@ -1,14 +1,26 @@
 .profile-wrapper {
   display: flex;
   justify-content: center;
-  margin-top: 2%;
+  align-items: center;
+  flex-direction: column;
   border: 3px solid black;
   width: 50%;
-  margin: auto;
+  margin: 2% auto;
 }
 
 .profile-picture img {
   width: 400px;
   height: 300px;
   border-radius: 150px;
+  margin: 4% auto;
+}
+
+.profile-information {
+  padding: 2%;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-information p {
+  margin-bottom: 2%;
 }
