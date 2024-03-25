@@ -133,6 +133,10 @@
   background-color: #fff;
 }
 
+.user-profile p {
+  text-align: center;
+}
+
 .user-profile h2 {
   font-size: 5rem;
   display: flex;

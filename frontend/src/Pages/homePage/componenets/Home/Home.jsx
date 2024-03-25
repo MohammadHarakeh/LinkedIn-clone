@@ -4,6 +4,7 @@ import rafikImage from "../../../../assets/rafik.png";
 import "./Home.css";
 
 const Home = ({
+  userInfo,
   handleImageChange,
   image,
   setImage,
@@ -18,7 +19,7 @@ const Home = ({
         <h2>
           <CgProfile />
         </h2>
-        <p>User Name</p>
+        <p>{`${userInfo && userInfo.name}`}</p>
       </div>
       <div className="middle-wrapper">
         <div className="search-post-wrapper">

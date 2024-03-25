@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import Home from "./componenets/Home/Home";
 import Profile from "./componenets/Profile/profile";
 
@@ -6,6 +6,27 @@ const HomePage = ({ userId }) => {
   const [text, setText] = useState("");
   const [image, setImage] = useState(null);
   const [incorrect, setIncorrect] = useState("");
+  const [userInfo, setUserInfo] = useState(null);
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const response = await fetch(
+          `http://127.0.0.1/Linkedin-clone/Backend/getUsers.php?userId=${userId}`
+        );
+        const userData = await response.json();
+        if (userData.status === "success") {
+          setUserInfo(userData.user_info[0]);
+        } else {
+          console.error("Error fetching user info:", userData.message);
+        }
+      } catch (error) {
+        console.error("Error fetching user info:", error);
+      }
+    };
+
+    fetchUserInfo();
+  }, [userId]);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -77,6 +98,8 @@ const HomePage = ({ userId }) => {
         handleUpload={handleUpload}
         incorrect={incorrect}
         setIncorrect={setIncorrect}
+        userId={userId}
+        userInfo={userInfo}
       ></Home>
       <Profile></Profile>
     </div>
