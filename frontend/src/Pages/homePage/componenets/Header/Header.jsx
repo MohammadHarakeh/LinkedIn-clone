@@ -13,13 +13,21 @@ function Header() {
           <div className="header">
             <div className="logo-left">
               <h2 className="logo">
-                <FaLinkedin />
+                <FaLinkedin
+                  onClick={() => {
+                    navigateTo("/home");
+                  }}
+                />
               </h2>
             </div>
 
             <div className="logo-right">
               <h2>
-                <FaHome />
+                <FaHome
+                  onClick={() => {
+                    navigateTo("/home");
+                  }}
+                />
               </h2>
               <h2>
                 <FaBell />

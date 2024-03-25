@@ -3,15 +3,14 @@ import rafikImage from "../../../../assets/rafik.png";
 import "./Home.css";
 
 const Home = ({
-  userInfo,
   allUsers,
   handleImageChange,
   image,
-  setImage,
   text,
   setText,
   handleUpload,
   incorrect,
+  allPosts,
 }) => {
   return (
     <div className="homepage-wrapper">
@@ -48,17 +47,13 @@ const Home = ({
           <p className="error-message">{incorrect}</p>
         </div>
         <div className="posted-images-container">
-          {allUsers && allUsers.length > 0 && <p>{allUsers[1].name}</p>}
-          <img src={rafikImage} alt="Failed Load" />
-        </div>
-      </div>
-
-      <div className="follower-card">
-        <div className="follower-list">
-          {allUsers.map((user, index) => (
-            <div key={index} className="followers">
-              <p>{user.name}</p>
-              <button>+ Follow</button>
+          {allPosts.map((post) => (
+            <div key={post.postsId} className="post">
+              <p>{post.name}</p>
+              <p>{post.postText}</p>
+              {post.postImage && (
+                <img src={post.postImage} alt="Post" className="post-image" />
+              )}
             </div>
           ))}
         </div>

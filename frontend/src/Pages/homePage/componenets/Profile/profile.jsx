@@ -31,12 +31,13 @@ function Profile({ userId }) {
       </div>
 
       <div className="profile-information">
-        <p>{`${userInfo && userInfo.name}`}</p>
         <p>
-          <b>Name:</b> John Doe
+          <b>Name: </b>
+          {`${userInfo && userInfo.name}`}
         </p>
         <p>
-          <b>Email:</b> JohnDoe@gmail.com
+          <b>Email: </b>
+          {`${userInfo && userInfo.email}`}
         </p>
         <p>
           <b>Skills:</b> Interviewing - Carrer Counseling - Hiring - Human
