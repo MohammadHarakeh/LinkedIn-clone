@@ -159,7 +159,7 @@
 }
 
 .follower-card p {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
 }
 
 .follower-card button {
@@ -194,7 +194,7 @@
 }
 
 .posted-images-container p {
-  margin-right: 70%;
+  margin-right: 58%;
   margin-bottom: 2%;
 }
 
@@ -218,7 +218,7 @@
 .follower-list {
   max-height: calc(5rem * 3);
   overflow-y: auto;
-  padding-right: 10%;
+  padding-right: 5%;
 }
 
 .visible {

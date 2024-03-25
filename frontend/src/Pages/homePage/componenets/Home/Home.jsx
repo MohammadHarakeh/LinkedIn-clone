@@ -55,15 +55,15 @@ const Home = ({
           <p className="error-message">{incorrect}</p>
         </div>
         <div className="posted-images-container">
-          <p>User Name</p>
+          {allUsers && allUsers.length > 0 && <p>{allUsers[1].name}</p>}
           <img src={rafikImage} alt="Failed Load" />
         </div>
       </div>
 
       <div className="follower-card">
         <div className="follower-list">
-          {allUsers.map((user) => (
-            <div key={user.id} className="followers">
+          {allUsers.map((user, index) => (
+            <div key={index} className="followers">
               <p>{user.name}</p>
               <button>+ Follow</button>
             </div>

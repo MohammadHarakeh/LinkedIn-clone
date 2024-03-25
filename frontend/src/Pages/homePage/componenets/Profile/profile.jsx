@@ -1,13 +1,15 @@
 import React from "react";
-import { CgProfile } from "react-icons/cg";
+import profilePicture from "../../../../assets/profilePicture.png";
 import "./profile.css";
 
-function Profile() {
+function Profile({ userId, userInfo, allUserInfo }) {
   return (
     <div className="profile-wrapper">
-      <h2>
-        <CgProfile />
-      </h2>
+      <div className="profile-picture">
+        <img src={profilePicture}></img>
+      </div>
+
+      <div></div>
     </div>
   );
 }

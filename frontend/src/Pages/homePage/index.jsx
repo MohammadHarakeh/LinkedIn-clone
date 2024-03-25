@@ -8,6 +8,7 @@ const HomePage = ({ userId }) => {
   const [incorrect, setIncorrect] = useState("");
   const [userInfo, setUserInfo] = useState(null);
   const [allUsers, setAllUsers] = useState([]);
+  const [inProfile, setInProfile] = useState(false);
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -123,7 +124,9 @@ const HomePage = ({ userId }) => {
         userInfo={userInfo}
         allUsers={allUsers}
       ></Home>
-      <Profile></Profile>
+      {inProfile && (
+        <Profile userId={userId} userInfo={userInfo} allUsers={allUsers} />
+      )}
     </div>
   );
 };
