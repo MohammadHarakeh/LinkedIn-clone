@@ -2,7 +2,7 @@ import { React, useState } from "react";
 import Header from "./componenets/Header/Header";
 import Home from "./componenets/Home/Home";
 
-const HomePage = ({ userId, setUserId }) => {
+const HomePage = ({ userId }) => {
   const [text, setText] = useState("");
   const [image, setImage] = useState(null);
   const [incorrect, setIncorrect] = useState("");
