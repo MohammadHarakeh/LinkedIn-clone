@@ -5,6 +5,19 @@ import "./profile.css";
 function Profile({ userId }) {
   const [userInfo, setUserInfo] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [skills, setSkills] = useState("");
+  const [experience, setExperience] = useState("");
+  const [education, setEducation] = useState("");
+  const [bio, setBio] = useState("");
+
+  const [editedInfo, setEditedInfo] = useState({
+    skills: "",
+    experience: "",
+    education: "",
+    bio: "",
+  });
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -15,6 +28,11 @@ function Profile({ userId }) {
         const userData = await response.json();
         if (userData.status === "success") {
           setUserInfo(userData.user_info[0]);
+          setEditedInfo(userData.user_info[0]);
+          setSkills(userData.skills);
+          setExperience(userData.experience);
+          setEducation(userData.education);
+          setBio(userData.bio);
         } else {
           console.error("Error fetching user info:", userData.message);
         }
@@ -31,6 +49,33 @@ function Profile({ userId }) {
   };
   const closePopup = () => {
     setShowPopup(false);
+  };
+
+  const handleConfirm = async () => {
+    const formData = new FormData();
+    formData.append("userId", userId);
+    formData.append("skills", skills);
+    formData.append("experience", experience);
+    formData.append("education", education);
+    formData.append("bio", bio);
+    try {
+      const response = await fetch(
+        `http://127.0.0.1/Linkedin-clone/Backend/updateUser.php?userId=${userId}`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+      const data = await response.json();
+      if (data.status === "success") {
+        setUserInfo(editedInfo);
+        closePopup();
+      } else {
+        console.error("Error updating user info:", data.message);
+      }
+    } catch (error) {
+      console.error("Error updating user info:", error);
+    }
   };
 
   return (
@@ -72,40 +117,50 @@ function Profile({ userId }) {
         </button>
       </div>
 
-      {/* Popup and backdrop */}
       {showPopup && (
         <>
           <div className="popup-backdrop" onClick={closePopup}></div>
           <div className="edit-popup">
             <h2>Edit Profile</h2>
-            <div className="edit-popup-info">
-              <label>Name: </label>
-              <input type="text" placeholder="Name"></input>
-            </div>
-
-            <div className="edit-popup-info">
-              <label>Email: </label>
-              <input type="text" placeholder="Email"></input>
-            </div>
 
             <div className="edit-popup-info">
               <label>Skills: </label>
-              <input type="text" placeholder="Skills"></input>
+              <input
+                type="text"
+                placeholder="Skills"
+                value={skills}
+                onChange={(e) => setSkills(e.target.value)}
+              ></input>
             </div>
 
             <div className="edit-popup-info">
               <label>Experience: </label>
-              <input type="text" placeholder="Experience"></input>
+              <input
+                type="text"
+                placeholder="Experience"
+                value={experience}
+                onChange={(e) => setExperience(e.target.value)}
+              ></input>
             </div>
 
             <div className="edit-popup-info">
               <label>Education: </label>
-              <input type="text" placeholder="Education"></input>
+              <input
+                type="text"
+                placeholder="Education"
+                value={education}
+                onChange={(e) => setEducation(e.target.value)}
+              ></input>
             </div>
 
             <div className="edit-popup-info">
               <label>Bio: </label>
-              <input type="text" placeholder="Bio"></input>
+              <input
+                type="text"
+                placeholder="Bio"
+                value={bio}
+                onChange={(e) => setBio(e.target.value)}
+              ></input>
             </div>
 
             <div className="popup-buttons">
@@ -113,7 +168,7 @@ function Profile({ userId }) {
                 Close
               </button>
 
-              <button className="edit-button" onClick={closePopup}>
+              <button className="edit-button" onClick={handleConfirm}>
                 Confirm
               </button>
             </div>
