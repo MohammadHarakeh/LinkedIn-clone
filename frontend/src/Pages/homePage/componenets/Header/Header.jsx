@@ -1,5 +1,6 @@
 import { React } from "react";
 import { FaLinkedin, FaHome, FaBell } from "react-icons/fa";
+import { IoLogOut } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
@@ -38,6 +39,13 @@ function Header() {
                 }}
               >
                 <CgProfile />
+              </h2>
+              <h2>
+                <IoLogOut
+                  onClick={() => {
+                    navigateTo("/");
+                  }}
+                />
               </h2>
             </div>
           </div>

@@ -1,5 +1,4 @@
 import React from "react";
-import rafikImage from "../../../../assets/rafik.png";
 import "./Home.css";
 
 const Home = ({
@@ -50,10 +49,20 @@ const Home = ({
           {allPosts.map((post) => (
             <div key={post.postsId} className="post">
               <p>{post.name}</p>
-              <p>{post.postText}</p>
+              <p className="post-text">{post.postText}</p>
               {post.postImage && (
                 <img src={post.postImage} alt="Post" className="post-image" />
               )}
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="follower-card">
+        <div className="follower-list">
+          {allUsers.map((user, index) => (
+            <div key={index} className="followers">
+              <p>{user.name}</p>
+              <button>+ Follow</button>
             </div>
           ))}
         </div>

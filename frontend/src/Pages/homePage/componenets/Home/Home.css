@@ -187,10 +187,10 @@
 
 .posted-images-container img {
   border-radius: 15px;
-  width: 80%;
+  width: 100%;
   height: auto;
   max-height: 400px;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .posted-images-container p {
@@ -208,7 +208,7 @@
 }
 
 .middle-wrapper {
-  width: 100%;
+  width: 70%;
   margin: 1%;
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
     rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
@@ -239,4 +239,21 @@
 
 .followers p {
   margin-bottom: 4%;
+}
+
+.post {
+  width: 100%;
+  margin: auto;
+  border-bottom: 2px solid black;
+
+  margin: 2%;
+  padding: 1%;
+}
+
+.post p {
+  width: 100%;
+}
+
+.post-image {
+  margin: auto;
 }
