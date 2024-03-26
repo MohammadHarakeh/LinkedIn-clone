@@ -4,6 +4,8 @@ import "./profile.css";
 
 function Profile({ userId }) {
   const [userInfo, setUserInfo] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
+
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
@@ -24,10 +26,17 @@ function Profile({ userId }) {
     fetchUserInfo();
   }, [userId]);
 
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
+  };
+  const closePopup = () => {
+    setShowPopup(false);
+  };
+
   return (
     <div className="profile-wrapper">
       <div className="profile-picture">
-        <img src={profilePicture}></img>
+        <img src={profilePicture} alt="Profile"></img>
       </div>
 
       <div className="profile-information">
@@ -40,16 +49,77 @@ function Profile({ userId }) {
           {`${userInfo && userInfo.email}`}
         </p>
         <p>
-          <b>Skills:</b> Interviewing - Carrer Counseling - Hiring - Human
-          Resources.
+          <b>Skills: </b>
+          {`${userInfo && userInfo.skills}`}
         </p>
+
         <p>
-          <b>Bio:</b> Hello! I'm John Doe, a seasoned professional in the field
-          of Human Resources. With a passion for fostering talent and enhancing
-          organizational culture, I specialize in Interviewing, Career
-          Counseling, Hiring, and various aspects of Human Resources management.
+          <b>Experience: </b>
+          {`${userInfo && userInfo.experience}`}
         </p>
+
+        <p>
+          <b>Education: </b>
+          {`${userInfo && userInfo.education}`}
+        </p>
+
+        <p>
+          <b>Bio: </b>
+          {`${userInfo && userInfo.bio}`}
+        </p>
+        <button className="edit-button" onClick={togglePopup}>
+          Edit
+        </button>
       </div>
+
+      {/* Popup and backdrop */}
+      {showPopup && (
+        <>
+          <div className="popup-backdrop" onClick={closePopup}></div>
+          <div className="edit-popup">
+            <h2>Edit Profile</h2>
+            <div className="edit-popup-info">
+              <label>Name: </label>
+              <input type="text" placeholder="Name"></input>
+            </div>
+
+            <div className="edit-popup-info">
+              <label>Email: </label>
+              <input type="text" placeholder="Email"></input>
+            </div>
+
+            <div className="edit-popup-info">
+              <label>Skills: </label>
+              <input type="text" placeholder="Skills"></input>
+            </div>
+
+            <div className="edit-popup-info">
+              <label>Experience: </label>
+              <input type="text" placeholder="Experience"></input>
+            </div>
+
+            <div className="edit-popup-info">
+              <label>Education: </label>
+              <input type="text" placeholder="Education"></input>
+            </div>
+
+            <div className="edit-popup-info">
+              <label>Bio: </label>
+              <input type="text" placeholder="Bio"></input>
+            </div>
+
+            <div className="popup-buttons">
+              <button className="edit-button" onClick={closePopup}>
+                Close
+              </button>
+
+              <button className="edit-button" onClick={closePopup}>
+                Confirm
+              </button>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }
